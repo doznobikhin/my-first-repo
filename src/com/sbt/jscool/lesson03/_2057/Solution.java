@@ -8,29 +8,38 @@ import java.util.Collections;
 import java.util.List;
 
 public class Solution {
-    private List<Integer> list = new ArrayList<>();
+    private List<Integer> list;
+    private boolean needToSort = false;
+    private int index = -1;
+
+    public Solution(int n) {
+        this.list = new ArrayList<>(n);
+    }
 
     public void add(Integer x) {
         if (1 <= x && x <= Math.pow(10, 9)) {
             this.list.add(x);
+            this.needToSort = true;
+            this.index++;
         }
     }
 
     public Integer removeMin() {
-        if (!list.isEmpty()) {
-            Collections.sort(list);
-            return list.remove(0);
+        if (needToSort) {
+            //Collections.sort(list, Collections.reverseOrder());
+            list.sort(Collections.reverseOrder());
+            needToSort = false;
         }
-        throw new IndexOutOfBoundsException();
+        return list.remove(index--);
     }
 
     public static void main(String[] args) throws IOException {
-        Solution sol = new Solution();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(reader.readLine());
         if (1 > n || n > Math.pow(10, 6)) {
             System.exit(1);
         }
+        Solution sol = new Solution(n);
 
         //заполняем список входных данных
         List<String> inputList = new ArrayList<>(n);
@@ -44,10 +53,7 @@ public class Solution {
         for (String str : inputList) {
             String[] array = str.split(" ");
             if (array.length == 2 && Integer.parseInt(array[0]) == 1) {
-                if (1 <= Integer.parseInt(array[1]) && Integer.parseInt(array[1]) <= Math.pow(10, 9)) {
-                    sol.add(Integer.parseInt(array[1]));
-                }
-
+                sol.add(Integer.parseInt(array[1]));
             } else if (array.length == 1 && Integer.parseInt(array[0]) == 2) {
                 System.out.println(sol.removeMin());
             }
