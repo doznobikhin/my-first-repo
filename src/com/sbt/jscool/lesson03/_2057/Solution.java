@@ -3,7 +3,9 @@ package com.sbt.jscool.lesson03._2057;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Solution {
     private List<Integer> list = new ArrayList<>();
@@ -42,7 +44,7 @@ public class Solution {
         for (String str : inputList) {
             String[] array = str.split(" ");
             if (array.length == 2 && Integer.parseInt(array[0]) == 1) {
-                if (1<=Integer.parseInt(array[1]) && Integer.parseInt(array[1])<=Math.pow(10,9)) {
+                if (1 <= Integer.parseInt(array[1]) && Integer.parseInt(array[1]) <= Math.pow(10, 9)) {
                     sol.add(Integer.parseInt(array[1]));
                 }
 
