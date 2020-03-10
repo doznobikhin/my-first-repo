@@ -1,4 +1,4 @@
-package com.sbt.jscool.lesson02;
+package com.sbt.jscool.lesson03;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,5 @@ public class Solution5 {
         while (listIterator.hasPrevious()) {
             System.out.println(listIterator.previous());
         }
-
     }
 }

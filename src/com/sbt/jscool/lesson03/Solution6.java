@@ -1,18 +1,26 @@
-package com.sbt.jscool.lesson02;
+package com.sbt.jscool.lesson03;
 
 import java.io.BufferedReader;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.List;
+
+/**
+ * Задание 6: Выведите на экран строки, номера которых задаются пользователем в произвольном порядке.
+ */
 
 public class Solution6 {
     public static void main(String[] args) throws IOException {
-        Path fileName = Paths.get("D:\\school\\lesson02\\input.txt");
-        List<String> list = Files.readAllLines(fileName);
+        List<String> list = null;
+        try {
+            Path fileName = Paths.get(args[0]);
+            list = Files.readAllLines(fileName);
+        } catch (Exception e) {
+            System.exit(1);
+        }
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
@@ -22,26 +30,10 @@ public class Solution6 {
             }
             try {
                 int num = Integer.parseInt(strTmp);
-                System.out.println(returnStr(num,list));
+                System.out.println((0 <= num && num < list.size()) ? list.get(num) : "max line number = " + (list.size() - 1));
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
-
-        }
-
-        /*System.out.println(returnStr(0,list));
-        System.out.println(returnStr(2,list));
-        System.out.println(returnStr(20,list));*/
-
-
-    }
-
-    private static String returnStr(int num,List<String> list) {
-        if (!(0 <= num && num <= list.size())) {
-            return "";
-        } else {
-            return list.get(num);
         }
     }
-
 }
