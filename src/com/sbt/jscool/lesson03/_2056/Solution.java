@@ -1,31 +1,25 @@
 package com.sbt.jscool.lesson03._2056;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
-        /*BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String input = reader.readLine();
-        input = input.toLowerCase().replaceAll("\\s{1,}"," ").trim();*/
-
-        Path inputFile = Paths.get("input.txt");
-        List<String> list = Files.readAllLines(inputFile);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        for (String str : list) {
-            sb.append(str);
-            sb.append("\n");
+        while (reader.ready()) {
+            sb.append(reader.readLine());
+            sb.append(" ");
         }
 
-        String input = sb.toString().toLowerCase().replaceAll("\\s{1,}", " ").trim();
+        String input = sb.toString();
+        input = input.toLowerCase().replaceAll("\\s{1,}", " ").trim();
 
         List<String> wordsList = new ArrayList<>(Arrays.asList(input.split(" ")));
-        //wordsList.addAll(Arrays.asList(input.split(" ")));
         Set<String> set = new TreeSet<>(wordsList);
         Map<String, Integer> map = new TreeMap<>();
 
@@ -37,6 +31,7 @@ public class Solution {
                 max = frequency;
             }
         }
+
         for (Map.Entry<String, Integer> pair : map.entrySet()) {
             if (max == pair.getValue()) {
                 System.out.printf("%s%n", pair.getKey());
