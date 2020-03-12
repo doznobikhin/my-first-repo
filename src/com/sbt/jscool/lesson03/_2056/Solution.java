@@ -26,7 +26,6 @@ public class Solution {
 
         List<String> wordsList = new ArrayList<>(Arrays.asList(input.split(" ")));
         //wordsList.addAll(Arrays.asList(input.split(" ")));
-
         Set<String> set = new TreeSet<>(wordsList);
         Map<String, Integer> map = new TreeMap<>();
 
