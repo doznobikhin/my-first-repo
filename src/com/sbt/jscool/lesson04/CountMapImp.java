@@ -21,20 +21,11 @@ public class CountMapImp<E> implements CountMap<E> {
 
     @Override
     public int getCount(E e) {
-        /*if (map.containsKey(e)) {
-            return map.get(e);
-        }
-        return 0;*/
-        //return map.containsKey(e) ? map.get(e) : 0;
-        return map.getOrDefault(e,0);
+        return map.getOrDefault(e, 0);
     }
 
     @Override
     public int remove(E e) {
-        /*if (map.containsKey(e)) {
-            return map.remove(e);
-        }
-        return 0;*/
         return map.containsKey(e) ? map.remove(e) : 0;
     }
 
@@ -69,31 +60,5 @@ public class CountMapImp<E> implements CountMap<E> {
             Integer value = pair.getValue();
             destination.put(key, value);
         }
-    }
-
-    public static void main(String[] args) {
-        CountMapImp<Integer> countMapImp = new CountMapImp<>();
-        countMapImp.add(1);
-        countMapImp.add(1);
-        countMapImp.add(1);
-        countMapImp.add(2);
-        countMapImp.add(2);
-        System.out.println(countMapImp.getCount(1));
-        System.out.println(countMapImp.getCount(2));
-        System.out.println(countMapImp.getCount(3));
-        System.out.println(countMapImp.size());
-        System.out.println(countMapImp.remove(1));
-        System.out.println(countMapImp.remove(1));
-        CountMap<Integer> countMapImp2 = new CountMapImp<>();
-        countMapImp.add(5);
-        countMapImp.add(10);
-        countMapImp.add(10);
-        countMapImp.add(20);
-        countMapImp.add(20);
-        countMapImp.add(20);
-
-        System.out.println(countMapImp.size());
-        countMapImp.addAll(countMapImp2);
-        System.out.println(countMapImp.size());
     }
 }
