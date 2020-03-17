@@ -28,30 +28,25 @@ public class MyLinkedList<E> implements Iterable<E> {
         this.header.previous = header;
     }
 
-    public boolean add(E e) {
-        return addBeforeNode(header, e);
+    public void add(E e) {
+        addBeforeNode(header, e);
     }
 
-    private boolean addBeforeNode(Node<E> node, E element) {
-        try {
-            Node<E> prevNode = node.previous;
-            Node<E> newNode = new Node<>(element, prevNode, node);
+    private void addBeforeNode(Node<E> node, E e) {
+          Node<E> prevNode = node.previous;
+            Node<E> newNode = new Node<>(e, prevNode, node);
             prevNode.next = newNode;
             node.previous = newNode;
             size++;
-            return true;
-        } catch (Exception e) {
-            //e.printStackTrace();
-        }
-        return false;
     }
 
-    public boolean add(int index, E element) {
+    public void add(int index, E e) {
         if (index > size || index < 0) {
             throw new ArrayIndexOutOfBoundsException();
         }
         if (index == size) {
-            return addBeforeNode(header, element);
+            addBeforeNode(header, e);
+            return;
         }
 
         Node<E> node = header.next;
@@ -59,12 +54,12 @@ public class MyLinkedList<E> implements Iterable<E> {
 
         while (node != header) {
             if (count == index) {
-                return addBeforeNode(node, element);
+                addBeforeNode(node, e);
+                return;
             }
             node = node.next;
             count++;
         }
-        return false;
     }
 
     public E get(int index) {
@@ -72,14 +67,14 @@ public class MyLinkedList<E> implements Iterable<E> {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        Node<E> element = header.next;
+        Node<E> node = header.next;
         int count = 0;
 
-        while (element != header) {
+        while (node != header) {
             if (count == index) {
-                return element.value;
+                return node.value;
             }
-            element = element.next;
+            node = node.next;
             count++;
         }
         return null;
@@ -90,19 +85,19 @@ public class MyLinkedList<E> implements Iterable<E> {
             throw new ArrayIndexOutOfBoundsException();
         }
 
-        Node<E> element = header.next;
+        Node<E> node = header.next;
         int count = 0;
 
-        while (element != header) {
+        while (node != header) {
             if (count == index) {
-                Node<E> elementPrev = element.previous;
-                Node<E> elemnetNext = element.next;
-                elementPrev.next = elemnetNext;
-                elemnetNext.previous = elementPrev;
+                Node<E> nodePrev = node.previous;
+                Node<E> nodeNext = node.next;
+                nodePrev.next = nodeNext;
+                nodeNext.previous = nodePrev;
                 size--;
-                return element.value;
+                return node.value;
             }
-            element = element.next;
+            node = node.next;
             count++;
         }
         return null;
