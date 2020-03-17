@@ -1,6 +1,8 @@
 package com.sbt.jscool.lesson04;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class CollectionUtils {
     public static <T> void addAll(List<? extends T> source, List<? super T> destination) {
@@ -49,7 +51,7 @@ public class CollectionUtils {
     }*/
 
     public static <T> List<T> range(List<T> list, T min, T max) {
-        return range(list,min,max, null);
+        return range(list, min, max, null);
     }
 
     public static <T> List<T> range(List<T> list, T min, T max, Comparator<? super T> comparator) {
