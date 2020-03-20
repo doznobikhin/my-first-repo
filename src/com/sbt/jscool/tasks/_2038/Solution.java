@@ -8,28 +8,14 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String str = reader.readLine();
-
-        if (str.length() > 10000) {
-            System.exit(1);
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        char[] array = str.toCharArray();
-        for (int i = 0; i < array.length; i++) {
-            if ((array[i] >= 65 && array[i] <= 90) || (array[i] >= 97 && array[i] <= 122)) {
-                sb.append(array[i]);
-            } else {
-                sb.append(",");
+        str = str.replaceAll("[^a-zA-Z]+", " ").trim();
+        int len = 0;
+        for (String s : str.split(" ")) {
+            if (s.length() > len) {
+                len = s.length();
             }
         }
-
-        int max = 0;
-        for (String s : sb.toString().split(",")) {
-            if (s.length() > max) {
-                max = s.length();
-            }
-        }
-        System.out.println(max);
+        System.out.println(len);
+        //System.out.println(str.split(" ").length);
     }
 }
