@@ -12,6 +12,7 @@ public class Solution {
         if (str.length() > 1000 || (len < 0 || len > 1001) || !str.matches("[a-z,]+")) {
             System.exit(1);
         }
+        
         System.out.println(processString(str, len));
     }
 
