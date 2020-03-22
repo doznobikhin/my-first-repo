@@ -3,10 +3,8 @@ package com.sbt.jscool.tasks._2053;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
@@ -18,23 +16,20 @@ public class Solution {
         }
         String str = sb.toString().toLowerCase().replaceAll("\\s+", " ").trim();
 
-        //Map<Integer, String> map = new TreeMap<>();
+        Map<String, Integer> map = new HashMap<>();
         int arrayLen = str.split(" ").length;
-        List<String> list = new ArrayList<>(arrayLen);
-
         sb = new StringBuilder(arrayLen);
         for (String s : str.split(" ")) {
-            if (list.contains(s)) {
-                sb.append(list.indexOf(s) + 1);
+            if (map.containsKey(s)) {
+                sb.append(map.get(s));
             } else {
-                list.add(s);
-                sb.append(list.size());
+                map.put(s, map.size() + 1);
+                sb.append(map.size());
             }
             sb.append(" ");
         }
         if (sb.length() > 0) {
             System.out.println(sb.deleteCharAt(sb.length() - 1).toString());
         }
-
     }
 }
