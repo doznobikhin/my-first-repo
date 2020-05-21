@@ -25,7 +25,7 @@ public class Solution2 {
     private List<Integer> list;
 
     private void fillList(String fileName) throws IOException {
-        Path pathName = Paths.get(fileName); // ("D:\\school\\lesson11_threads\\task11.txt");
+        Path pathName = Paths.get(fileName);
         list = Files.readAllLines(pathName)
                 .stream()
                 .map(line -> line.split(" "))
